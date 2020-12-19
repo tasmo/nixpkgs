@@ -1,7 +1,7 @@
 { stdenv, mkDerivation, fetchurl, fetchFromGitHub, chromaprint
-, fftw, flac, faad2, glibcLocales, mp4v2
+, fftw, flac, faad2, glibcLocales, mp4v2, lame
 , libid3tag, libmad, libopus, libshout, libsndfile, libusb1, libvorbis
-, libGLU, libxcb, lilv, lv2, opusfile
+, libGLU, libxcb, lilv, lv2, opusfile, ffmpeg, libmodplug, wavpack
 , pkgconfig, portaudio, portmidi, protobuf, qtbase, qtscript, qtsvg
 , qtx11extras, rubberband, sconsPackages, sqlite, taglib, upower, vamp-plugin-sdk
 }:
@@ -19,20 +19,20 @@ let
 in
 mkDerivation rec {
   pname = "mixxx";
-  version = "2.2.4";
+  version = "2.3-beta";
 
   src = fetchFromGitHub {
     owner = "mixxxdj";
     repo = "mixxx";
-    rev = "release-${version}";
-    sha256 = "1dj9li8av9b2kbm76jvvbdmihy1pyrw0s4xd7dd524wfhwr1llxr";
+    rev = "${version}";
+    sha256 = "0abcfxw1zbx170rfds96ry6b36hvz8hm735knpwdb8nym1khnisv";
   };
 
   nativeBuildInputs = [ sconsPackages.scons_3_1_2 ];
   buildInputs = [
-    chromaprint fftw flac faad2 glibcLocales mp4v2 libid3tag libmad libopus libshout241 libsndfile
+    chromaprint fftw flac faad2 glibcLocales mp4v2 lame libid3tag libmad libopus libshout241 libsndfile
     libusb1 libvorbis libxcb libGLU lilv lv2 opusfile pkgconfig portaudio portmidi protobuf qtbase qtscript qtsvg
-    qtx11extras rubberband sqlite taglib upower vamp-plugin-sdk
+    qtx11extras rubberband sqlite taglib upower vamp-plugin-sdk ffmpeg libmodplug wavpack
   ];
 
   enableParallelBuilding = true;
